@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Investment Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="index.js"></script>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+  </head>
+  <body class="bg-gray-200">
+    <div
+      id="home-page"
+      class="w-full flex flex-col justify-center items-center"
+    >
+      <h1
+        class="w-full flex justify-center items-center bg-black py-2 text-white text-2xl md:text-5xl font-bold"
+      >
+        Investment Portfolio Tracker
+      </h1>
+      <div
+        class="flex gap-1 text-xl md:text-3xl py-14 font-bold bg-white shadow rounded-md px-3 mt-5"
+      >
+        <p>Total Portfolio Value:</p>
+        <p id="money" class="text-green-500">$1000</p>
+      </div>
+      <div class="py-5">
+        <button
+          id="btn-add-new-investment"
+          class="text-xl bg-blue-600 rounded-md hover:bg-blue-500 text-white py-2 px-3 focus:bg-blue-400"
+        >
+          Add New Investment
+        </button>
+      </div>
+      <div class="py-5">
+        <table
+          id="table"
+          class="text-xs md:text-xl lg:text-2xl table-auto border border-gray-300 md:border-separate md:border-spacing-1"
+          style="border-collapse: separate; width: 100%"
+        >
+          <tr>
+            <th class="border border-gray-300 lg:p-4">Asset Name</th>
+            <th class="border border-gray-300 lg:p-4">Invested</th>
+            <th class="border border-gray-300 lg:p-4">Current</th>
+            <th class="border border-gray-300 lg:p-4">Change(%)</th>
+            <th class="border border-gray-300 lg:p-4">Update</th>
+            <th class="border border-gray-300 lg:p-4">Remove</th>
+          </tr>
+        </table>
+      </div>
+      <div class="w-full flex justify-center items-center h-[60%]">
+        <div id="piechart" class="w-full md:w-4/5 h-64 md:h-96"></div>
+      </div>
+    </div>
+
+    <div
+      id="add-investment"
+      class="w-full h-[100vh] flex flex-col justify-center items-center hidden"
+    >
+      <h1 class="font-bold text-3xl mb-3">Add Investment</h1>
+      <div class="bg-white shadow p-5 rounded-md">
+        <form>
+          <div class="p-3 flex justify-between gap-2 text-xl md:text-2xl">
+            <label>Asset Name:</label>
+            <input
+              id="A_Name"
+              tyep="text"
+              text
+              class="border-2 rounded-md required"
+            />
+          </div>
+          <div class="p-3 flex justify-between gap-2 text-xl md:text-2xl">
+            <label>Invested:</label>
+            <input
+              id="invested"
+              type="number"
+              class="border-2 rounded-md required"
+            />
+          </div>
+          <div class="p-3 flex justify-between gap-2 text-xl md:text-2xl">
+            <label>Current:</label>
+            <input
+              id="current"
+              type="number"
+              class="border-2 rounded-md required"
+            />
+          </div>
+          <div class="p-3 flex justify-end gap-2 text-xl md:text-2xl">
+            <button
+              id="btn-add"
+              class="bg-blue-600 px-5 py-2 rounded-md focus:bg-blue-400"
+            >
+              Add
+            </button>
+            <button
+              id="btn-add-cancel"
+              class="bg-blue-600 px-4 py-2 rounded-md focus:bg-blue-400"
+            >
+              cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="update-investment"
+      class="update Investment w-full h-[100vh] flex flex-col justify-center items-center hidden"
+    >
+      <h1 class="font-bold text-3xl mb-3">Update Investment</h1>
+      <div class="bg-white rounded-md p-5">
+        <form>
+          <div class="p-3 flex gap-2 text-xl md:text-2xl">
+            <label>Asset Name:</label>
+            <p class="rounded-md required" id="up-A_Name"></p>
+          </div>
+          <div class="p-3 flex justify-between gap-2 text-xl md:text-2xl">
+            <label>Invested:</label>
+            <input
+              id="up-invested"
+              type="number"
+              class="border-2 rounded-md required"
+            />
+          </div>
+          <div class="p-3 flex justify-between gap-2 text-xl md:text-2xl">
+            <label>Current:</label>
+            <input
+              id="up-current"
+              type="number"
+              class="border-2 rounded-md required"
+            />
+          </div>
+          <div class="p-3 flex justify-end gap-2 text-xl md:text-2xl">
+            <button
+              id="btn-update"
+              class="bg-blue-600 px-5 py-2 rounded-md focus:bg-blue-400"
+            >
+              update
+            </button>
+            <button
+              id="btn-up-cancel"
+              class="bg-blue-600 px-4 py-2 rounded-md focus:bg-blue-400"
+            >
+              cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
