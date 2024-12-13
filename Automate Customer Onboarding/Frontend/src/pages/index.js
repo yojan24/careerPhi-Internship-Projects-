@@ -10,7 +10,7 @@ import MainApplication from "./kycAplications/MainApplication";
 import AdminFormView from "./FormView/AdminFormView";
 import Home from "./Home/Home";
 import AboutUs from "./About/About";
-import ContactUs from "./Contact/Contactus";
+import ContactUs from "./Contact/ContactUs";
 import CarInsurance from "./CarInsurance/CarInsurance";
 import Pollicies from "./Pollicies/Pollicies";
 import HealthInsurance from "./HealthInsurance/HealthInsurance";
