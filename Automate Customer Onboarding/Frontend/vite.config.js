@@ -3,11 +3,16 @@ import react from "@vitejs/plugin-react";
 import dotenv from "dotenv";
 dotenv.config();
 
+console.log(process.env.VITE_BASE_URL);
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api/": process.env.VITE_BASE_URL,
+      "/api/": {
+        target: process.env.VITE_BASE_URL,
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 });
