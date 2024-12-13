@@ -9,6 +9,7 @@ import {
   useProfileMutation,
   useUploadIMGMutation,
 } from "../../Redux/api/userApiSlice";
+import { hideLoader, showLoader } from "../../Redux/features/loader";
 function Profile() {
   const { register, handleSubmit, reset } = useForm();
   const dispatch = useDispatch();
@@ -84,6 +85,7 @@ function Profile() {
   };
 
   const handleImageChange = async (e) => {
+    dispatch(showLoader());
     const image = e.target.files[0];
     if (image) {
       try {
@@ -106,10 +108,12 @@ function Profile() {
         // Send the updated profile data
         const result = await updateProfile(data).unwrap();
         dispatch(login({ ...userInfo, photo: result.photo }));
+        dispatch(hideLoader());
         toast.success("photo uploaded Successfully", {
           autoClose: 1000,
         });
       } catch (err) {
+        dispatch(hideLoader());
         toast.error(err?.data?.message || err.error, {
           autoClose: 1000,
         });

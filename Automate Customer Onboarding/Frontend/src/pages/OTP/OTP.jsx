@@ -8,6 +8,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { login } from "../../Redux/features/authSlice";
+import { hideLoader, showLoader } from "../../Redux/features/loader";
 const OTP = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const OTP = () => {
 
   // Handle form submission
   const onSubmit = async (data) => {
+    dispatch(showLoader());
     try {
       const code = data.otp.join("").toString();
       if (!code) {
@@ -52,13 +54,16 @@ const OTP = () => {
       });
       dispatch(login({ ...userInfo, isEmailVerified: true }));
       navigate("/profile");
+      dispatch(hideLoader());
     } catch (err) {
+      dispatch(hideLoader());
       toast.error(err?.data?.message || err.error, {
         autoClose: 1000,
       });
     }
   };
   const rensendOTP = async () => {
+    dispatch(showLoader());
     try {
       console.log(userInfo.email);
       const data = {
@@ -69,7 +74,9 @@ const OTP = () => {
       toast.success("Otp resend Successfully", {
         autoClose: 1000,
       });
+      dispatch(hideLoader());
     } catch (err) {
+      dispatch(hideLoader());
       toast.error(err?.data?.message || err.error, {
         autoClose: 1000,
       });

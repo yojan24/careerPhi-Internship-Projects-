@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TabView } from "../../components";
+import { Loader, TabView } from "../../components";
 import { Link } from "react-router-dom";
 import { useStatusKycMutation } from "../../Redux/api/kycApiSlice";
 import { toast } from "react-toastify";
@@ -24,7 +24,7 @@ function Pending() {
   }, [statusKyc]);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Show loading while fetching data
+    return <Loader />; // Show loading while fetching data
   }
 
   return (

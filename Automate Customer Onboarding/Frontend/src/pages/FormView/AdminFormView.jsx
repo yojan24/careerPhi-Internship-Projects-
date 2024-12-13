@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../Redux/features/authSlice";
 import { showLoader, hideLoader } from "../../Redux/features/loader";
+import { Loader } from "../../components";
 function AdminFormView() {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.auth);
@@ -31,7 +32,7 @@ function AdminFormView() {
     }
   }, [data]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loader />;
   if (error) return <p>Error loading KYC data</p>;
 
   const cancel = async () => {
@@ -113,7 +114,7 @@ function AdminFormView() {
   };
 
   return (
-    <div className="max-w-full py-2">
+    <div className="max-w-full min-h-[92vh] py-2">
       <h1 className="w-full text-center font-bold text-2xl md:text-4xl py-4 my-5 text-[#563A9C] tracking-wide drop-shadow-lg">
         KYC FORM
       </h1>

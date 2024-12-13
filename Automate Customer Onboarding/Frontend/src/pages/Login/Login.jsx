@@ -6,6 +6,7 @@ import { useLoginMutation } from "../../Redux/api/userApiSlice";
 import { IoEyeOffSharp } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
 import { login as setCrendentials } from "../../Redux/features/authSlice";
+import { showLoader, hideLoader } from "../../Redux/features/loader";
 
 import { toast } from "react-toastify";
 function Login() {
@@ -28,12 +29,15 @@ function Login() {
 
   const submit = async (data) => {
     try {
+      dispatch(showLoader());
       const result = await login(data).unwrap();
       console.log(result);
       dispatch(setCrendentials({ ...result }));
       toast.success("login Successfully", { autoClose: 1000 });
       navigate("/profile");
+      dispatch(hideLoader());
     } catch (err) {
+      dispatch(hideLoader());
       toast.error(err?.data?.message || err.error, {
         autoClose: 1000,
       });
