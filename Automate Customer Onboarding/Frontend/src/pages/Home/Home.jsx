@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 function Home() {
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -104,12 +104,12 @@ function Home() {
           {/* Conditional CTA based on login */}
           <div className="flex justify-center gap-4">
             {!userInfo && (
-              <a
-                href="/login" // this links to login or dashboard section
+              <Link
+                to="/login" // this links to login or dashboard section
                 className="bg-[#563A9C] text-white py-3 px-8 rounded-lg text-lg font-semibold hover:bg-[#6D48B1] transition duration-300 transform hover:scale-105"
               >
                 Login to Explore
-              </a>
+              </Link>
             )}
 
             <button
