@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Stepper } from "../../components";
+import { Loader, Stepper } from "../../components";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetKycQuery } from "../../Redux/api/kycApiSlice";
@@ -39,7 +39,7 @@ function Kycstatus() {
     }
   }, [data, userInfo, navigate]);
   if (isLoading) {
-    return <div>Loading...</div>; // Show a loading message or spinner
+    return <Loader />; // Show a loading message or spinner
   }
 
   return (
@@ -62,9 +62,15 @@ function Kycstatus() {
                       <th className="py-4 md:px-12 px-1 text-center font-semibold">
                         Application ID
                       </th>
-                      <th className="py-4 md:px-12 px-1 text-center font-semibold">Name</th>
-                      <th className="py-4 md:px-12 px-1 text-center font-semibold">Status</th>
-                      <th className="py-4 md:px-12 px-1 text-center font-semibold">Action</th>
+                      <th className="py-4 md:px-12 px-1 text-center font-semibold">
+                        Name
+                      </th>
+                      <th className="py-4 md:px-12 px-1 text-center font-semibold">
+                        Status
+                      </th>
+                      <th className="py-4 md:px-12 px-1 text-center font-semibold">
+                        Action
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TabView } from "../../components";
-import Pending from "./pending";
+import Pending from "./Pending";
 import Rejected from "./Rejected";
 import Approved from "./Approved";
 

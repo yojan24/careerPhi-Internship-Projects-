@@ -11,7 +11,9 @@ function App() {
     <>
       <ToastContainer />
       <Nav />
-      <Outlet />
+      <div className="min-h-[92vh]">
+        <Outlet />
+      </div>
       {loading && <Loader />}
       <Footer />
     </>

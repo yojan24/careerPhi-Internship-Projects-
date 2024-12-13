@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Notif } from "../../components";
+import { Loader, Notif } from "../../components";
 import { useGetNotificcationsQuery } from "../../Redux/api/userApiSlice";
 import { login } from "../../Redux/features/authSlice";
 
@@ -23,7 +23,7 @@ function Notification() {
   }, [Notification]);
 
   if (isLoading) {
-    return <h1>Loading......</h1>;
+    return <Loader />;
   }
 
   // Case: No notifications available

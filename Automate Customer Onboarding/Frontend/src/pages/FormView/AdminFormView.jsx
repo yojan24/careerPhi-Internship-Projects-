@@ -118,7 +118,7 @@ function AdminFormView() {
       <h1 className="w-full text-center font-bold text-2xl md:text-4xl py-4 my-5 text-[#563A9C] tracking-wide drop-shadow-lg">
         KYC FORM
       </h1>
-      <div className="max-w-full mx-12">
+      <div className="max-w-full mx-2 md:mx-12">
         {/* Application Details */}
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5 md:gap-6">
           {/* Left Column: Application Id & Status */}
@@ -283,7 +283,7 @@ function AdminFormView() {
               href={`${kyc.addProof?.src}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-3/5 h-8 text-blue-400 rounded-md ml-1 hover:underline"
+              className="w-3/5 h-8 text-blue-400 rounded-md ml-1 hover:underline break-words"
             >
               {kyc.addProof?.original_name}
             </a>
@@ -306,7 +306,7 @@ function AdminFormView() {
               href={`${kyc.identityProof?.src}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-3/5 h-8 text-blue-400 rounded-md ml-1 hover:underline"
+              className="w-3/5 h-8 text-blue-400 rounded-md ml-1 hover:underline break-words"
             >
               {kyc.identityProof?.original_name}
             </a>

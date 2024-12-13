@@ -19,9 +19,9 @@ function Profile() {
   const [updateProfile] = useProfileMutation();
 
   useEffect(() => {
-    console.log(userInfo);
+    // console.log(userInfo);
     if (userInfo) {
-      console.log(userInfo);
+      // console.log(userInfo);
       reset({
         name: userInfo.name || "",
         email: userInfo.email || "",
@@ -157,7 +157,7 @@ function Profile() {
           {/* Form */}
           <form
             onSubmit={handleSubmit(updateSubmit)}
-            className="w-full flex flex-col items-center space-y-4"
+            className="w-full flex flex-col items-center space-y-4 p-1 md:p-0"
           >
             {/* Name */}
             <div className="flex items-center space-x-4 w-full max-w-2xl">

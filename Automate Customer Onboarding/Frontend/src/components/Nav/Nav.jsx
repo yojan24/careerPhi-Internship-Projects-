@@ -66,7 +66,7 @@ function Nav() {
                   onClick={toggle}
                 >
                   <AiOutlineUser size={23} />
-                  <span className=" flex  items-center justify-center text-2 max-h-0 overflow-hidden group-hover:max-h-10 transition-all duration-300">
+                  <span className=" flex  items-center justify-evenly text-2 max-h-0 overflow-hidden group-hover:max-h-10 transition-all duration-300 mx-auto">
                     {userInfo.name.split(" ")[0]}{" "}
                     <span
                       className={`ml-2 transform ${

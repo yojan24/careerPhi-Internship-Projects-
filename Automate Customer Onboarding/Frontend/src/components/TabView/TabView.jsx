@@ -13,7 +13,7 @@ function TabView({ setComponent, component }) {
         <li>
           <Link
             to={"#"}
-            className={`mx-3 text-xl p-2 border-b-2 border-white hover:text-purple-400 hover:border-b-2 hover:border-purple-400 hover:bg-gray-100 rounded-t-md ${
+            className={`mx-3 text-sm md:text-xl p-2 border-b-2 border-white hover:text-purple-400 hover:border-b-2 hover:border-purple-400 hover:bg-gray-100 rounded-t-md ${
               component === "Pending"
                 ? "text-purple-400 border-purple-400"
                 : "text-black"
@@ -26,7 +26,7 @@ function TabView({ setComponent, component }) {
         <li>
           <Link
             to={"#"}
-            className={`mx-3 text-xl p-2 border-b-2 border-white hover:text-purple-400 hover:border-b-2 hover:border-purple-400 hover:bg-gray-100 rounded-t-md ${
+            className={`mx-3 text-sm md:text-xl p-2 border-b-2 border-white hover:text-purple-400 hover:border-b-2 hover:border-purple-400 hover:bg-gray-100 rounded-t-md ${
               component === "Rejected"
                 ? "text-purple-400 border-purple-400"
                 : "text-black"
@@ -39,7 +39,7 @@ function TabView({ setComponent, component }) {
         <li>
           <Link
             to={"#"}
-            className={`mx-3 text-xl p-2 border-b-2 border-white hover:text-purple-400 hover:border-b-2 hover:border-purple-400 hover:bg-gray-100 rounded-t-md ${
+            className={`mx-3 text-sm md:text-xl p-2 border-b-2 border-white hover:text-purple-400 hover:border-b-2 hover:border-purple-400 hover:bg-gray-100 rounded-t-md ${
               component === "Approved"
                 ? "text-purple-400 border-purple-400"
                 : "text-black"
