@@ -27,7 +27,7 @@ app.use(
   })
 );
 // Data sanitization against NoSQL query injection
-app.set("trust proxy", 1);
+// app.set("trust proxy", 1);
 app.use(mongoSanitize());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

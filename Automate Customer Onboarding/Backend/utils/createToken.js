@@ -12,7 +12,6 @@ const generateToken = async (res, id) => {
       sameSite: "None",
       path: "/",
     });
-    console.log(token);
 
     return token;
   } catch (error) {

@@ -30,10 +30,11 @@ function Nav() {
     <>
       <section className="bg-[#563A9C] md:h-[8vh] h-[10vh]">
         <header className="flex h-14 justify-between items-center mx-5 text-white group ">
-          <p className="text-white  font-semibold text-md md:text-xl">
-            Insurance
+          <p className="text-white  font-semibold text-lg md:text-2xl p-1 mt-[0.5vh] md:mt-0">
+            <img src="navlogo.png" className="h-8 w-8 mr-2 md:mr-1" />
+            Ensure
           </p>
-          <nav className=" hidden md:block">
+          <nav className=" hidden lg:block">
             <ul className="flex gap-5">
               <Link className="flex flex-col justify-center items-center p-1 hover:bg-white rounded-md hover:text-black w-20">
                 <AiOutlineHome size={23} />
@@ -95,7 +96,7 @@ function Nav() {
               </div>
             )}
           </nav>
-          <nav className="sm:block md:hidden ">
+          <nav className="sm:block lg:hidden ">
             <ul className="flex gap-3">
               {userInfo ? (
                 <li
