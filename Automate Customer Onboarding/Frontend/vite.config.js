@@ -8,11 +8,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api/": {
-        target: process.env.VITE_BASE_URL,
-        changeOrigin: true,
-        secure: true,
-      },
+      "/api/": process.env.VITE_BASE_URL,
     },
   },
 });
