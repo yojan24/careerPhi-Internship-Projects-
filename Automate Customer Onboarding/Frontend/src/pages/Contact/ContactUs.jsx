@@ -48,10 +48,7 @@ function ContactUs() {
             </div>
 
             <div className="text-center">
-              <button
-                type="submit"
-                className="bg-[#563A9C] text-white py-3 px-8 rounded-lg text-lg font-semibold hover:bg-[#6D48B1] transition duration-300"
-              >
+              <button className="bg-[#563A9C] text-white py-3 px-8 rounded-lg text-lg font-semibold hover:bg-[#6D48B1] transition duration-300">
                 Submit Message
               </button>
             </div>
