@@ -9,6 +9,7 @@ const generateToken = async (res, id) => {
     res.cookie("jwt", token, {
       httpOnly: true,
       secure: true,
+      sameSite: "None",
     });
 
     return token;
