@@ -5,6 +5,8 @@ import AppError from "../utils/appError.js";
 
 export const authenticate = asyncHandler(async (req, res, next) => {
   const token = req.cookies.jwt;
+  console.log(req.cookies);
+  console.log(token);
 
   if (!token) {
     throw new AppError("Not authorized , No token", 401);
