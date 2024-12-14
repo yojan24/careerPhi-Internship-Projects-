@@ -20,6 +20,9 @@ connectDB();
 app.use(
   cors({
     origin: process.env.origin,
+    methods: ["GET", "POST", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
 // Data sanitization against NoSQL query injection

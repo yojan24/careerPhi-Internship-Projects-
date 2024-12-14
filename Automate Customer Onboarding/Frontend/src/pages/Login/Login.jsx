@@ -30,6 +30,8 @@ function Login() {
   const submit = async (data) => {
     try {
       dispatch(showLoader());
+      console.log(data);
+
       const result = await login(data).unwrap();
       console.log(result);
       dispatch(setCrendentials({ ...result }));
@@ -38,6 +40,7 @@ function Login() {
       dispatch(hideLoader());
     } catch (err) {
       dispatch(hideLoader());
+      console.log(err);
       toast.error(err?.data?.message || err.error, {
         autoClose: 1000,
       });
