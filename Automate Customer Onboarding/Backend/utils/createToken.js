@@ -10,6 +10,7 @@ const generateToken = async (res, id) => {
       httpOnly: true,
       secure: true,
       sameSite: "None",
+      path: "/",
     });
 
     return token;
