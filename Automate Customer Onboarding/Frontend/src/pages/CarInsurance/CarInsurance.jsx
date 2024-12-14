@@ -566,7 +566,6 @@ function CarInsurance() {
               totalAmount={(price + price * 0.18).toFixed(2)}
               gstAmount={(price * 0.18).toFixed(2)}
             />
-            <buttton>Check status</buttton>
           </div>
         )}
 

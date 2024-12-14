@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../Redux/features/authSlice";
 import { showLoader, hideLoader } from "../../Redux/features/loader";
+import { showLoader, hideLoader } from "../../Redux/features/loader";
 import { Loader } from "../../components";
 function AdminFormView() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function AdminFormView() {
     navigate("/kycApplications");
   };
   const approved = async () => {
+    dispatch(showLoader());
     try {
       const data1 = {
         email: `${kyc.email}`,
@@ -71,7 +73,9 @@ function AdminFormView() {
       });
 
       navigate("/kycApplications");
+      dispatch(hideLoader());
     } catch (err) {
+      dispatch(hideLoader());
       toast.error(err?.data?.message || err.error, {
         autoClose: 1000,
       });
