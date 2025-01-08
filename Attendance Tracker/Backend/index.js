@@ -80,7 +80,7 @@ const nightCheck = async () => {
 
 cron.schedule(
   "1 10 * * *",
-  async () => {
+  () => {
     console.log("Attendance check at 10 AM....");
     morningCheck();
   },
@@ -92,7 +92,7 @@ cron.schedule(
 
 cron.schedule(
   "0 0 * * *",
-  async () => {
+  () => {
     console.log("Reset Attendance at 12 AM....");
     nightCheck();
   },
