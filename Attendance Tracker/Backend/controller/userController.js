@@ -8,8 +8,6 @@ import { format } from "date-fns";
 import { TZDate } from "@date-fns/tz";
 import { DateTime } from "luxon";
 
-const IST_TIMEZONE = "Asia/Kolkata";
-
 export const register = asyncHandler(async (req, res) => {
   const { name, email, password, passwordConfirm } = req.body;
   if (!name || !email || !password || !passwordConfirm) {

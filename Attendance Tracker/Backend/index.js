@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import moment from "moment";
 import cron from "node-cron";
+import cors from "cors";
 
 import conntectDB from "./config/DBconfig.js";
 import userRoute from "./routes/user.js";
@@ -11,6 +12,16 @@ import userRoute from "./routes/user.js";
 dotenv.config();
 conntectDB();
 const app = express();
+
+app.use(
+  cors({
+    origin: process.env.origin,
+    methods: ["GET", "POST", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
 const port = process.env.PORT || 3000;
 import User from "./model/user.js";
 import Holiday from "./model/holiday.js";
@@ -69,7 +80,7 @@ const nightCheck = async () => {
 
 cron.schedule(
   "1 10 * * *",
-  () => {
+  async () => {
     console.log("Attendance check at 10 AM....");
     morningCheck();
   },
@@ -81,7 +92,7 @@ cron.schedule(
 
 cron.schedule(
   "0 0 * * *",
-  () => {
+  async () => {
     console.log("Reset Attendance at 12 AM....");
     nightCheck();
   },
