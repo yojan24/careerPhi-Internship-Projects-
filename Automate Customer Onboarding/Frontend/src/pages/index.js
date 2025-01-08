@@ -15,6 +15,8 @@ import CarInsurance from "./CarInsurance/CarInsurance";
 import Pollicies from "./Pollicies/Pollicies";
 import HealthInsurance from "./HealthInsurance/HealthInsurance";
 import PolicyStatus from "./PolicyStatus/PolicyStatus";
+import Quotecar from "./QuoteCar/QuoteCar";
+import QuoteHealth from "./QuoteHealth/QuoteHealth";
 export {
   Login,
   Register,
@@ -33,4 +35,6 @@ export {
   Pollicies,
   HealthInsurance,
   PolicyStatus,
+  Quotecar,
+  QuoteHealth,
 };

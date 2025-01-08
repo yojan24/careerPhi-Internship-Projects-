@@ -23,6 +23,8 @@ import {
   PolicyStatus,
   Pollicies,
   Profile,
+  Quotecar,
+  QuoteHealth,
   Register,
 } from "./pages/index.js";
 import Protected from "./components/Protected.jsx";
@@ -56,6 +58,14 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/car-Quotation",
+        element: <Quotecar />,
+      },
+      {
+        path: "/health-Quotation",
+        element: <QuoteHealth />,
       },
       {
         element: <Protected />,

@@ -157,7 +157,7 @@ function Home() {
                 <li>Flexible payment options and deductible plans.</li>
               </ul>
               <a
-                href="#quote"
+                href="car-Quotation"
                 className="bg-[#563A9C] text-white py-2 px-6 rounded-lg text-sm font-semibold hover:bg-[#6D48B1] transition duration-300"
               >
                 Get a Free Car Insurance Quote
@@ -188,7 +188,7 @@ function Home() {
                 <li>Flexible deductible and co-pay options.</li>
               </ul>
               <a
-                href="#quote"
+                href="/health-Quotation"
                 className="bg-[#563A9C] text-white py-2 px-6 rounded-lg text-sm font-semibold hover:bg-[#6D48B1] transition duration-300"
               >
                 Get a Free Health Insurance Quote
@@ -288,14 +288,6 @@ function Home() {
           </div>
 
           {/* Final CTA */}
-          <div className="text-center">
-            <a
-              href="#quote"
-              className="bg-[#563A9C] text-white py-3 px-8 rounded-lg text-lg font-semibold hover:bg-[#6D48B1] transition duration-300"
-            >
-              Get Your Free Quote Today
-            </a>
-          </div>
         </div>
       </section>
     </section>

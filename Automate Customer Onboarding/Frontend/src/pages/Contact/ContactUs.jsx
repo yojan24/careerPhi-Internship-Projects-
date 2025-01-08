@@ -1,4 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import Swal from "sweetalert2"; // Import SweetAlert2
+
+const submit = async (e) => {
+  e.preventDefault(); // Prevent form from refreshing the page
+
+  // Show SweetAlert success message after form submission
+  Swal.fire({
+    title: "Thank You!",
+    text: "Your message has been submitted successfully. We'll get back to you soon.",
+    icon: "success",
+    confirmButtonText: "Okay",
+    confirmButtonColor: "#563A9C", // Customize the button color
+  });
+
+  // Reset form (optional)
+  e.target.reset();
+};
 
 function ContactUs() {
   return (
@@ -18,7 +35,7 @@ function ContactUs() {
           <h3 className="text-3xl font-semibold text-[#563A9C] mb-6">
             Get in Touch
           </h3>
-          <form action="#" method="POST">
+          <form action="#" method="POST" onSubmit={submit}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
               <div className="flex flex-col">
                 <label className="text-gray-700 mb-2">Full Name</label>
@@ -48,7 +65,10 @@ function ContactUs() {
             </div>
 
             <div className="text-center">
-              <button className="bg-[#563A9C] text-white py-3 px-8 rounded-lg text-lg font-semibold hover:bg-[#6D48B1] transition duration-300">
+              <button
+                type="submit"
+                className="bg-[#563A9C] text-white py-3 px-8 rounded-lg text-lg font-semibold hover:bg-[#6D48B1] transition duration-300"
+              >
                 Submit Message
               </button>
             </div>
