@@ -6,6 +6,8 @@ import {
   applyhealth,
   applyKYCtmp,
   applyKycStatusTemplate,
+  freeCarQuote_Template,
+  freeHealthQuote_template,
 } from "./templates.js";
 import dotenv from "dotenv";
 dotenv.config();
@@ -46,7 +48,7 @@ export const applycarmail = async (email, name) => {
       text: "Your car insurance application has been successfully processed.",
       html: applyCar.replace("{name}", name),
     });
-    console.log("Email sent: " + info.response);
+    // console.log("Email sent: " + info.response);
   } catch (error) {
     console.log("Error sending email: ", error.message);
   }
@@ -60,7 +62,7 @@ export const applyhealthmail = async (email, name) => {
       text: "Your car insurance application has been successfully processed.",
       html: applyhealth.replace("{name}", name),
     });
-    console.log("Email sent: " + info.response);
+    // console.log("Email sent: " + info.response);
   } catch (error) {
     console.log("Error sending email: ", error.message);
   }
@@ -75,7 +77,7 @@ export const applyKycmail = async (email, name) => {
       text: "KYC Application Successfully Submitted",
       html: applyKYCtmp.replace("{name}", name),
     });
-    console.log("Email sent: " + info.response);
+    // console.log("Email sent: " + info.response);
   } catch (error) {
     console.log("Error sending email: ", error.message);
   }
@@ -93,7 +95,74 @@ export const kycStatusUpdate = async (email, name, subject, content) => {
         .replace(/{subject}/g, subject)
         .replace("{content}", content),
     });
-    console.log("Email sent: " + info.response);
+  } catch (error) {
+    console.log("Error sending email: ", error.message);
+  }
+};
+
+export const freeCarQuote = async (
+  name,
+  email,
+  carNumber,
+  carVariant,
+  fuel,
+  plantype,
+  years,
+  gst,
+  idv,
+  premiumAmount,
+  totalAmount
+) => {
+  try {
+    await transpoter.sendMail({
+      from: `"Ensure" <${process.env.MAIL_ID}>`,
+      to: email,
+      subject: " Your Car Quotation",
+      text: " Your Car Quotation",
+      html: freeCarQuote_Template
+        .replaceAll("{name}", name)
+        .replace("{email}", email)
+        .replace("{carNumber}", carNumber)
+        .replace("{carVariant}", carVariant)
+        .replace("{fuel}", fuel)
+        .replaceAll("{plan}", plantype)
+        .replaceAll("{idvValue}", idv)
+        .replaceAll("{premiumAmount}", premiumAmount)
+        .replace("{years}", years)
+        .replace("{gst}", gst)
+        .replace("{totalAmount}", totalAmount),
+    });
+  } catch (error) {
+    console.log("Error sending email: ", error.message);
+  }
+};
+
+export const freeHealthQuote = async (
+  name,
+  email,
+  idv,
+  premiumAmount,
+  gst,
+  totalAmount,
+  years,
+  disease = "No illnesses"
+) => {
+  try {
+    await transpoter.sendMail({
+      from: `"Ensure" <${process.env.MAIL_ID}>`,
+      to: email,
+      subject: " Your Health Quotation",
+      text: " Your Health Quotation",
+      html: freeHealthQuote_template
+        .replaceAll("{name}", name)
+        .replace("{email}", email)
+        .replace("{disease}", disease)
+        .replaceAll("{idv}", idv)
+        .replaceAll("{Premium}", premiumAmount)
+        .replace("{years}", years)
+        .replace("{gst}", gst)
+        .replace("{totalAmount}", totalAmount),
+    });
   } catch (error) {
     console.log("Error sending email: ", error.message);
   }

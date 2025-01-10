@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Receipt, Stepper } from "../../components";
 import { useForm, Controller } from "react-hook-form";
-import { FaRegCircleCheck } from "react-icons/fa6";
-import { useAddNotifMutation } from "../../Redux/api/userApiSlice";
-import { useApplyHealthInsMutation } from "../../Redux/api/healthApiSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../Redux/features/authSlice";
+import { useHealthQuoteMutation } from "../../Redux/api/quoteMail";
 import { toast } from "react-toastify";
 import { showLoader, hideLoader } from "../../Redux/features/loader";
-import { addYears } from "date-fns";
-
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 function QuoteHealth() {
   const [step, setStep] = useState(1);
+  const [sendMail] = useHealthQuoteMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Setting default values for idv and years
   const { register, handleSubmit, watch, control, setValue } = useForm({
@@ -56,6 +55,31 @@ function QuoteHealth() {
     return (premium + parseFloat(gst)).toFixed(2);
   };
 
+  const submit = async (data) => {
+    const disease = Object.keys(data.medicalHistory).filter(
+      (disease) => data.medicalHistory[disease] === true
+    );
+    delete data.medicalHistory;
+    data.disease = disease;
+    data.premiumAmount = String(premium);
+    data.totalAmount = total;
+    data.gst = gst;
+    try {
+      dispatch(showLoader());
+      await sendMail(data).unwrap();
+      toast.success("Your details have been sent to your email.", {
+        autoClose: 1000,
+      });
+      navigate("/");
+      dispatch(hideLoader());
+    } catch (err) {
+      dispatch(hideLoader());
+      toast.error(err?.data?.message || err.error, {
+        autoClose: 1000,
+      });
+    }
+  };
+
   // Update the premium, GST, and total when form data changes
   useEffect(() => {
     if (idv && years) {
@@ -68,7 +92,7 @@ function QuoteHealth() {
     <section className="w-full min-h-[92vh] bg-gray-100 justify-center py-6 px-4">
       <Stepper step={step} stepsConfig={stepsConfig} />
       <form
-        // onSubmit={handleSubmit(submit)}
+        onSubmit={handleSubmit(submit)}
         className="bg-white w-full max-w-3xl mx-auto p-6 rounded-lg shadow-lg hover:shadow-xl"
       >
         {step === 1 && (
@@ -76,6 +100,36 @@ function QuoteHealth() {
             <h2 className="text-2xl text-[#563A9C] font-semibold mb-6 text-center">
               Medical History
             </h2>
+            <div className="flex flex-wrap items-center gap-4 mb-4">
+              <label
+                className="w-1/4 font-semibold text-gray-700"
+                htmlFor="carNumber"
+              >
+                Full Name<span className="text-red-500">*</span>:
+              </label>
+              <input
+                type="text"
+                {...register("name")}
+                className="w-2/3 h-10 p-3 border border-gray-300 rounded-md"
+                id="carNumber"
+                placeholder="Enter Your Full Name"
+              />
+            </div>
+            <div className="flex flex-wrap items-center gap-4 mb-4">
+              <label
+                className="w-1/4 font-semibold text-gray-700"
+                htmlFor="carNumber"
+              >
+                Email<span className="text-red-500">*</span>:
+              </label>
+              <input
+                type="email"
+                {...register("email")}
+                className="w-2/3 h-10 p-3 border border-gray-300 rounded-md"
+                id="carNumber"
+                placeholder="Enter Your Eamil"
+              />
+            </div>
             <p className="w-full text-center font-bold">
               Does the insurer have any existing illnesses for which they take
               regular medication?
@@ -205,6 +259,13 @@ function QuoteHealth() {
             >
               Next
             </div>
+          ) : step == 2 ? (
+            <button
+              type="submit"
+              className="bg-green-500 p-3 rounded-md text-white font-semibold cursor-pointer hover:bg-green-600"
+            >
+              Get Info
+            </button>
           ) : (
             <div></div>
           )}

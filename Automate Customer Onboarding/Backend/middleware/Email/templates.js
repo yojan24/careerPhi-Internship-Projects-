@@ -349,3 +349,288 @@ export const applyKycStatusTemplate = `<!DOCTYPE html>
   </body>
   </html>
   `;
+
+export const freeCarQuote_Template = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{subject}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            font-size: 26px;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 20px;
+            color: #563A9C;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .section-content {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #563A9C;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">Your Car Quotation</div>
+
+        <p class="section-title">Hi {name},</p>
+
+        <p class="section-content">Thank you for providing your details. Here’s the summary of your car insurance quote:</p>
+
+        <p class="section-title">Car Information</p>
+        <p class="section-content">
+            <strong>Email:</strong> {email}<br>
+            <strong>Car Number:</strong> {carNumber}<br>
+            <strong>Variant:</strong> {carVariant}<br>
+            <strong>Fuel Type:</strong> {fuel}<br>
+        </p>
+
+        <p class="section-title">Payment Details</p>
+        <p class="section-content">
+            <strong>Plan Type:</strong> {plan}<br>
+            <strong>IDV (Insured Declared Value):</strong> {idvValue}<br>
+            <strong>Premium Amount:</strong> {premiumAmount}<br>
+            <strong>Select Plan Duration:</strong> {years} Year(s)
+        </p>
+
+        <p class="section-title">Payment Summary</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Plan Type:</strong></td>
+                    <td>{plan}</td>
+                </tr>
+                <tr>
+                    <td><strong>IDV Cover:</strong></td>
+                    <td>{idvValue}</td>
+                </tr>
+                <tr>
+                    <td><strong>Premium Amount:</strong></td>
+                    <td>{premiumAmount}</td>
+                </tr>
+                <tr>
+                    <td><strong>GST @18%:</strong></td>
+                    <td>{gst}</td>
+                </tr>
+                <tr style="border-top: 2px solid #ddd;">
+                    <td><strong>Total Payable:</strong></td>
+                    <td>{totalAmount}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="footer">If you have any questions or need further assistance, feel free to reach out to our customer support team at <a href="mailto:support@example.com">support@example.com</a>.</p>
+        <div class="footer">
+            <p>Thank you for choosing Ensure!</p>
+            <p>The Ensure Team</p>
+        </div>
+    </div>
+</body>
+</html>
+`;
+
+export const freeHealthQuote_template = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Health Insurance Quote</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 650px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            font-size: 28px;
+            color: #4A4A4A;
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 22px;
+            color: #563A9C;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .section-content {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .section-content strong {
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #563A9C;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        td {
+            padding: 12px;
+            text-align: left;
+            color: #4A4A4A;
+        }
+        .total-row td {
+            font-weight: bold;
+            border-top: 2px solid #ddd;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #563A9C;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background-color: #45338e;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-top: 40px;
+        }
+        .footer a {
+            color: #563A9C;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">Your Health Insurance Quote</div>
+
+        <p class="section-title">Hi {name},</p>
+
+        <p class="section-content">Thank you for providing your details. Below is the summary of your health insurance quote:</p>
+
+        <p class="section-title">Personal Information</p>
+        <p class="section-content">
+            <strong>Email:</strong> {email}<br>
+            <strong>Full Name:</strong> {name}<br>
+            <strong>Existing Illnesses:</strong> {disease}<br>
+        </p>
+
+        <p class="section-title">Plan and Payment Details</p>
+        <p class="section-content">
+            <strong>IDV (Insured Declared Value):</strong> ₹{idv}<br>
+            <strong>Plan Duration:</strong> {years} Year(s)<br>
+            <strong>Premium Amount:</strong> ₹{Premium}<br>
+        </p>
+
+        <p class="section-title">Payment Summary</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>IDV Cover:</strong></td>
+                    <td>₹{idv}</td>
+                </tr>
+                <tr>
+                    <td><strong>Premium Amount:</strong></td>
+                    <td>₹{Premium}</td>
+                </tr>
+                <tr>
+                    <td><strong>GST @18%:</strong></td>
+                    <td>₹ {gst}</td>
+                </tr>
+                <tr class="total-row">
+                    <td><strong>Total Payable:</strong></td>
+                    <td>₹{totalAmount}</td>
+                </tr>
+            </tbody>
+        </table>
+
+      
+
+        <p class="footer">If you have any questions or need further assistance, feel free to reach out to our customer support team at <a href="mailto:support@example.com">support@example.com</a>.</p>
+        <div class="footer">
+            <p>Thank you for choosing Ensure Health Insurance!</p>
+            <p>The Ensure Health Team</p>
+        </div>
+    </div>
+</body>
+</html>
+`;

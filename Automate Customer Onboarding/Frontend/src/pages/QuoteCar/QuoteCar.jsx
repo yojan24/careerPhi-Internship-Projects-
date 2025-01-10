@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Receipt, Stepper } from "../../components";
 import { useForm } from "react-hook-form";
-// import { FaRegCircleCheck } from "react-icons/fa6";
-// import { useApplyCarInsMutation } from "../../Redux/api/carApiSlice";
-// import { useAddNotifMutation } from "../../Redux/api/userApiSlice";
-// import { toast } from "react-toastify";
-// import { useDispatch, useSelector } from "react-redux";
-// import { showLoader, hideLoader } from "../../Redux/features/loader";
-// import { addYears } from "date-fns";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useCarQuoteMutation } from "../../Redux/api/quoteMail";
+import { showLoader, hideLoader } from "../../Redux/features/loader";
 function Quotecar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [sendMail] = useCarQuoteMutation();
   const { register, handleSubmit, setValue, watch } = useForm({
     defaultValues: {
       plantype: "Third Party",
@@ -38,6 +39,28 @@ function Quotecar() {
     setPlan(plantype);
     setValue("plantype", plantype);
   };
+
+  const submit = async (data) => {
+    data.premiumAmount = price.toFixed(2);
+    data.gst = (price * 0.18).toFixed(2);
+    data.totalAmount = (price + price * 0.18).toFixed(2);
+    console.log(data);
+    try {
+      dispatch(showLoader());
+      await sendMail(data).unwrap();
+      toast.success("Your details have been sent to your email.", {
+        autoClose: 1000,
+      });
+      dispatch(hideLoader());
+      navigate("/");
+    } catch (err) {
+      dispatch(hideLoader());
+      toast.error(err?.data?.message || err.error, {
+        autoClose: 1000,
+      });
+    }
+  };
+
   useEffect(() => {
     let calculatedPrice = idvValue * 0.015 * yearsValue;
     if (plan === "Comprehensive") {
@@ -47,11 +70,11 @@ function Quotecar() {
   }, [idvValue, yearsValue, step, plan]);
 
   return (
-    <section className="w-full min-h-[92vh]  bg-gray-100 justify-center py-6 px-4">
+    <section className="w-full min-h-[92vh] md:text-xl text-xs  bg-gray-100 justify-center py-6 px-4">
       <Stepper step={step} stepsConfig={stepsConfig} />
 
       <form
-        // onSubmit={handleSubmit(submit)}
+        onSubmit={handleSubmit(submit)}
         className="bg-white w-full max-w-3xl mx-auto p-6 rounded-lg shadow-lg hover:shadow-xl"
       >
         {step === 1 && (
@@ -63,13 +86,46 @@ function Quotecar() {
               All information as per the RC book.
             </p>
 
+            {/* Email*/}
+
+            <div className="flex flex-wrap items-center gap-4 mb-4">
+              <label
+                className="w-1/4 font-semibold text-gray-700"
+                htmlFor="manufacturingDate"
+              >
+                Email<span className="text-red-500">*</span> :
+              </label>
+              <input
+                type="email"
+                {...register("email")}
+                placeholder="Enter Your Email"
+                className="w-2/3 h-10 p-3 border border-gray-300 rounded-md"
+                id="chassisNumber"
+              />
+            </div>
+            {/* Full Name*/}
+            <div className="flex flex-wrap items-center gap-4 mb-4">
+              <label
+                className="w-1/4 font-semibold text-gray-700"
+                htmlFor="manufacturingDate"
+              >
+                Full Name<span className="text-red-500">*</span> :
+              </label>
+              <input
+                type="text"
+                {...register("name")}
+                placeholder="Enter Your Email"
+                className="w-2/3 h-10 p-3 border border-gray-300 rounded-md"
+                id="chassisNumber"
+              />
+            </div>
             {/* Car Number */}
             <div className="flex flex-wrap items-center gap-4 mb-4">
               <label
                 className="w-1/4 font-semibold text-gray-700"
                 htmlFor="carNumber"
               >
-                Car Number:
+                Car Number<span className="text-red-500">*</span>:
               </label>
               <input
                 type="text"
@@ -86,7 +142,7 @@ function Quotecar() {
                 className="w-1/4 font-semibold text-gray-700"
                 htmlFor="carVariant"
               >
-                Variant:
+                Variant<span className="text-red-500">*</span> :
               </label>
               <input
                 type="text"
@@ -103,7 +159,7 @@ function Quotecar() {
                 className="w-1/4 font-semibold text-gray-700"
                 htmlFor="fuel"
               >
-                Fuel:
+                Fuel<span className="text-red-500">*</span> :
               </label>
               <select
                 id="fuel"
@@ -114,22 +170,6 @@ function Quotecar() {
                 <option value="Petrol">Petrol</option>
                 <option value="Diesel">Diesel</option>
               </select>
-            </div>
-
-            {/* Registration Date */}
-            <div className="flex flex-wrap items-center gap-4 mb-4">
-              <label
-                className="w-1/4 font-semibold text-gray-700"
-                htmlFor="registrationDate"
-              >
-                Registration Date:
-              </label>
-              <input
-                type="date"
-                {...register("registrationDate")}
-                className="w-2/3 h-10 p-3 border border-gray-300 rounded-md"
-                id="registrationDate"
-              />
             </div>
 
             {/* Manufacturing Date */}
@@ -145,35 +185,6 @@ function Quotecar() {
                 {...register("manufacturingDate")}
                 className="w-2/3 h-10 p-3 border border-gray-300 rounded-md"
                 id="manufacturingDate"
-              />
-            </div>
-
-            <div className="flex flex-wrap items-center gap-4 mb-4">
-              <label
-                className="w-1/4 font-semibold text-gray-700"
-                htmlFor="manufacturingDate"
-              >
-                Engine Number:
-              </label>
-              <input
-                type="text"
-                {...register("engineNumber")}
-                className="w-2/3 h-10 p-3 border border-gray-300 rounded-md"
-                id="engineNumber"
-              />
-            </div>
-            <div className="flex flex-wrap items-center gap-4 mb-4">
-              <label
-                className="w-1/4 font-semibold text-gray-700"
-                htmlFor="manufacturingDate"
-              >
-                Chassis Number:
-              </label>
-              <input
-                type="text"
-                {...register("chassisNumber")}
-                className="w-2/3 h-10 p-3 border border-gray-300 rounded-md"
-                id="chassisNumber"
               />
             </div>
           </div>
@@ -205,11 +216,11 @@ function Quotecar() {
                     defaultChecked={selectedPlan === "Comprehensive"} // Set default state based on the plantype value
                     id="planType"
                   />
-                  <span className="text-sm font-medium text-gray-900 mx-1">
+                  <span className="text-xm font-medium text-gray-900 mx-1">
                     Third Party
                   </span>
-                  <div class="relative w-11 h-6 bg-blue-600 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                  <span className="text-sm font-medium text-gray-900 mx-1">
+                  <div class="relative md:w-11 w-10 h-6 bg-blue-600 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-4 md:after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                  <span className="text-xs font-medium text-gray-900 mx-1">
                     Comprehensive
                   </span>
                 </label>
@@ -325,6 +336,13 @@ function Quotecar() {
             >
               Next
             </div>
+          ) : step == 2 ? (
+            <button
+              type="submit"
+              className="bg-green-500 p-3 rounded-md text-white font-semibold cursor-pointer hover:bg-green-600"
+            >
+              Get Info
+            </button>
           ) : (
             <div></div>
           )}

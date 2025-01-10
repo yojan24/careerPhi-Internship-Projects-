@@ -12,6 +12,7 @@ import uploadRoute from "./routes/upload.js";
 import kycRoute from "./routes/kyc.js";
 import carRoute from "./routes/carInsurance.js";
 import healthRoute from "./routes/healthInsurance.js";
+import freeQuotationRoute from "./routes/quotations.js";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -19,8 +20,7 @@ const PORT = process.env.PORT || 4000;
 connectDB();
 app.use(
   cors({
-    origin:
-      process.env.origin || "https://automate-cutomer-onboarding.netlify.app",
+    origin: process.env.origin,
     methods: ["GET", "POST", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -39,6 +39,7 @@ app.use("/api/upload", uploadRoute);
 app.use("/api/kyc", kycRoute);
 app.use("/api/car", carRoute);
 app.use("/api/health", healthRoute);
+app.use("/api/free-quotations", freeQuotationRoute);
 
 app.listen(PORT, (req, res) => {
   console.log("Lisening on port:", PORT);
