@@ -114,7 +114,7 @@ function Quotecar() {
               <input
                 type="text"
                 {...register("name")}
-                placeholder="Enter Your Email"
+                placeholder="Enter Your Full Name"
                 className="w-2/3 h-10 p-3 border border-gray-300 rounded-md"
                 id="chassisNumber"
               />

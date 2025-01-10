@@ -127,7 +127,7 @@ function QuoteHealth() {
                 {...register("email")}
                 className="w-2/3 h-10 p-3 border border-gray-300 rounded-md"
                 id="carNumber"
-                placeholder="Enter Your Eamil"
+                placeholder="Enter Your Email"
               />
             </div>
             <p className="w-full text-center font-bold">
