@@ -62,7 +62,7 @@ export const applyhealthmail = async (email, name) => {
       text: "Your car insurance application has been successfully processed.",
       html: applyhealth.replace("{name}", name),
     });
-    // console.log("Email sent: " + info.response);
+    console.log("Email sent: " + info.response);
   } catch (error) {
     console.log("Error sending email: ", error.message);
   }
