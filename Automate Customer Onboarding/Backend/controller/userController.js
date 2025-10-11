@@ -33,7 +33,7 @@ export const register = asyncHandler(async (req, res) => {
   await newUser.save();
 
   createToken(res, newUser._id);
-  await sendMail(newUser.email, newUser.verifyCode);
+  sendMail(newUser.email, newUser.verifyCode);
 
   res.status(200).json({
     name: newUser.name,
@@ -271,7 +271,7 @@ export const resendOTP = asyncHandler(async (req, res) => {
   user.verifyCodeExpiration = expirationTime;
   await user.save();
 
-  await sendMail(user.email, user.verifyCode);
+  sendMail(user.email, user.verifyCode);
 
   res.status(200).json({
     message: "New OTP has been sent to your email.",

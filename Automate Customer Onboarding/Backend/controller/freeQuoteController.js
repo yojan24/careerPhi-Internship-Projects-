@@ -55,7 +55,7 @@ export const carQuoteController = asyncHandler(async (req, res) => {
   await newRecord.save();
 
   if (newRecord) {
-    await freeCarQuote(
+    freeCarQuote(
       name,
       email,
       carNumber,
@@ -115,7 +115,7 @@ export const healthQuoteController = asyncHandler(async (req, res) => {
     disease
   );
   if (newRecord) {
-    await freeHealthQuote(
+    freeHealthQuote(
       name,
       email,
       idv,

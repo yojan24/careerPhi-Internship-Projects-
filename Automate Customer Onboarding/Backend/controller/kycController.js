@@ -73,7 +73,7 @@ export const applyKyc = asyncHandler(async (req, res) => {
   const person = await User.findById(req.user._id);
 
   if (person && person.email) {
-    await applyKycmail(person.email, person.name);
+    applyKycmail(person.email, person.name);
   }
   // console.log("send Email");
   res.status(201).json({ kyc });
