@@ -5,12 +5,12 @@ dotenv.config();
 export const transpoter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
-  secure: true,
+  secure: false,
   auth: {
     user: process.env.MAIL_ID,
     pass: process.env.MAIL_PASS,
   },
-  tls: {
-    ciphers: "SSLv3", // Ensures compatibility with Gmail's TLS settings
-  },
+  // tls: {
+  //   ciphers: "SSLv3", // Ensures compatibility with Gmail's TLS settings
+  // },
 });
