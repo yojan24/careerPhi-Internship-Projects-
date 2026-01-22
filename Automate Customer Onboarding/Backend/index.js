@@ -34,6 +34,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(cookieParser());
 
+app.use((req, res, next) => {
+  console.log("Incoming Origin:", req.get("origin"));
+  next();
+});
+
 app.use("/api/user", userRoutes);
 app.use("/api/upload", uploadRoute);
 app.use("/api/kyc", kycRoute);
