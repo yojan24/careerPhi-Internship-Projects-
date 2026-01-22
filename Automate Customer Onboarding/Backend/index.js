@@ -20,10 +20,10 @@ const PORT = process.env.PORT || 4000;
 connectDB();
 app.use(
   cors({
-    origin: "*",
+    origin: process.env.origin,
     methods: ["GET", "POST", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: false,
+    credentials: true,
   })
 );
 // Data sanitization against NoSQL query injection
